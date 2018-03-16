@@ -1,0 +1,57 @@
+{
+    "env": {
+        "es6": true,
+        "node": true,
+        "mocha": true
+    },
+    "extends": [
+        "airbnb-base",
+        "prettier"
+    ],
+    "rules": {
+        "linebreak-style": 0,
+        "strict": 0,
+        "indent": [1, 4],
+        "no-debugger": 0,
+        "max-len": [2, {
+            "code": 85,
+            "tabWidth": 4,
+            "ignoreUrls": true
+        }],
+        "max-statements": [1, 15],
+        "max-depth": [1, 2],
+        "no-console": 0,
+        "prefer-arrow-callback": 0,
+        "func-names": 0,
+        "comma-dangle": [
+            2,
+            {
+                "arrays": "always-multiline",
+                "objects": "always-multiline",
+                "imports": "always-multiline",
+                "exports": "always-multiline",
+                "functions": "ignore"
+            }
+        ],
+        "complexity": [
+            1,
+            6
+        ],
+        "no-trailing-spaces": 1,
+        "no-unused-vars": [
+            1,
+            {
+                "vars": "local",
+                "args": "none",
+                "varsIgnorePattern": "should|expect"
+            }
+
+        ],
+        "no-unused-expressions": 1,
+        "no-restricted-syntax": 0
+    },
+    "plugins": [
+        "html",
+        "prettier"
+    ]
+}
