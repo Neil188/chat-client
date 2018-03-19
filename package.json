@@ -5,13 +5,15 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.5"
+    "body-parser": "^1.18.2",
+    "express": "^4.15.5",
+    "socket.io": "^2.0.4"
   },
   "devDependencies": {
     "eslint": "^4.18.2",
@@ -20,6 +22,7 @@
     "eslint-plugin-html": "^4.0.2",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
+    "nodemon": "^1.17.2",
     "prettier": "^1.11.1"
   }
 }
