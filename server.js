@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const app = express();
 const http = require('http').Server(app);
@@ -13,23 +14,36 @@ app.use(express.static(__dirname));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-const messages = [
-    {name: 'Tim', message: 'Hi'},
-    {name: 'Jane', message: 'Hello'},
-];
+const dbUrl = 'mongodb://demouser:user1234@ds213118.mlab.com:13118/learning-node'
+
+const Message = mongoose.model('Message', {
+    name: String,
+    message: String,
+})
 
 app.get('/messages', (req, res) => {
-    res.send(messages);
+    Message.find({}, (err, mess) => {
+        res.send(mess)
+    })
 });
 
 app.post('/messages', (req, res) => {
-    messages.push(req.body);
-    io.emit('message', req.body);
-    res.sendStatus(200);
+    const message = new Message(req.body);
+
+    message.save( err => {
+        if (err) res.sendStatus(500)
+
+        io.emit('message', req.body);
+        res.sendStatus(200);
+    })
 });
 
 io.on('connection', (socket) => {
     console.log('A user connected');
+})
+
+mongoose.connect(dbUrl, (err) => {
+    console.log('Mongo db connection', err);
 })
 
 const server = http.listen(3000, () => {
