@@ -30,12 +30,25 @@ app.get('/messages', (req, res) => {
 app.post('/messages', (req, res) => {
     const message = new Message(req.body);
 
-    message.save( err => {
-        if (err) res.sendStatus(500)
+    message
+        .save()
+        .then( () => {
+            console.log('saved')
+            return Message.findOne({message: 'badword'})
+        })
+        .then( censored => {
+            if (censored) {
+                console.log('Censored words found', censored)
+                return Message.remove({_id: censored.id})
+            }
+            io.emit('message', req.body);
+            res.sendStatus(200);
+        })
+        .catch( err => {
+            res.sendStatus(500)
+            return console.error(err)
+        } )
 
-        io.emit('message', req.body);
-        res.sendStatus(200);
-    })
 });
 
 io.on('connection', (socket) => {
