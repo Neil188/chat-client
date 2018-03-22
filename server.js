@@ -27,6 +27,14 @@ app.get('/messages', (req, res) => {
     })
 });
 
+app.get('/messages/:user', (req, res) => {
+    const {user} = req.params
+
+    Message.find({name: user}, (err, mess) => {
+        res.send(mess)
+    })
+});
+
 app.post('/messages', async (req, res) => {
     try {
         const message = new Message(req.body);
@@ -68,4 +76,5 @@ const server = http.listen(3000, () => {
 process.on("SIGINT", () => {
     console.log("SIGINT");
     server.close();
+    process.exit();
 });
