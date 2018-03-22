@@ -14,7 +14,7 @@ app.use(express.static(__dirname));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-const dbUrl = 'mongodb://demouser:user1234@ds213118.mlab.com:13118/learning-node'
+const dbUrl = require('./config');
 
 const Message = mongoose.model('Message', {
     name: String,
