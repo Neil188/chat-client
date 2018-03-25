@@ -31,10 +31,10 @@ Demo chat app for LinkedIn course learning NodeJS.
 
 ## Technologies used
 
-npm v5.6.0
-Node v9.8.0
-express v4.16.3
-mongoose v5.0.11
-socket.io v2.0.4
-jasmine v3.1.0
-nodemon v1.17.2
+* npm v5.6.0
+* Node v9.8.0
+* express v4.16.3
+* mongoose v5.0.11
+* socket.io v2.0.4
+* jasmine v3.1.0
+* nodemon v1.17.2
